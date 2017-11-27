@@ -1,19 +1,17 @@
 package com.example;
 
 
-import java.io.IOException;
-
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.example.pojo.Person;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+
 @SpringBootApplication
 public class AutoconfigApplication {
-
-	public static void main(String[] args) {	
 		/** 四个不同形式的getBean方法，获取实例
 	     */
 	  /*  Object getBean(String name) throws BeansException;
@@ -56,11 +54,10 @@ public class AutoconfigApplication {
             throws BeansException;   //  根据注解类型，查找所有有这个注解的Bean名和Bean的Map
 	    <A extends Annotation> A findAnnotationOnBean(String beanName, Class<A> annotationType);//根据指定Bean名和注解类型查找指定的Bean
 	}*/
-	ApplicationContext context=SpringApplication.run(AutoconfigApplication.class, args);
-	                 //获取BeanDefinition总数
-	int count = context.getBeanDefinitionCount();
+	public static void main(String[] args) {
+		ApplicationContext context=SpringApplication.run(AutoconfigApplication.class, args);
+			int count = context.getBeanDefinitionCount();
         System.out.println("Beans的个数：" + count);
-        			//  返回工厂中所有Bean的名字
         String[] names = context.getBeanDefinitionNames();
         for (String name : names) {
                System.out.print(name);
@@ -70,57 +67,7 @@ public class AutoconfigApplication {
         }
     	ObjectMapper mapper = context.getBean(ObjectMapper.class);
     	      System.out.println(mapper);
-    	    
-      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      
-    	      /*Person  me = new Person();
-        me.setAge(47);
-        me.setName("邱张华");
-        try {
-               out.println(mapper.writeValueAsString(me));
-        } catch (JsonProcessingException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-        }
-        
-        String json = "{\"name\":\"Daniel\",\"age\":22}";
-        
-        try {
-               Person p2 = mapper.readValue(json, Person.class);
-               out.println(p2);
-        } catch (IOException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-        }*/
-        
-        
-        
-    
-	     
-	      
-	      
-	      
+
 	}
 }
 
